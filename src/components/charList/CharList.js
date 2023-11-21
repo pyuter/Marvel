@@ -30,19 +30,21 @@ class CharList extends Component {
     }
     onError = () => {
         this.setState({
-            error: true
+            error: true,
+            loading: false
         })
     }
 
-    renderItem(arr) {
-        const item = arr.map((item) => {
+    renderItem(arr){
+        const items = arr.map((item) => {
             let imgStyle = { 'objectFit': 'cover' };
             if (item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
                 imgStyle = { 'objectFit': 'unset' };
             }
             return (
                 <li className="char__item"
-                    key={item.id}>
+                    key={item.id}
+                    onClick={() => this.props.onCharSelected(item.id)}>
                     <img src={item.thumbnail} alt={item.name} style={imgStyle} />
                     <div className="char__name">{item.name}</div>
                 </li>
@@ -50,7 +52,7 @@ class CharList extends Component {
         });
         return (
             <ul className='char__grid'>
-                {item}
+                {items}
             </ul>
         )
     }
@@ -58,11 +60,11 @@ class CharList extends Component {
     render() {
         const {charList, loading, error} = this.state;
 
-        const item = this.renderItem(charList);
+        const items = this.renderItem(charList);
 
         const errorMessage = error ? <ErrorMessage/> : null;
         const spinner = loading ? <Spinner/> : null;
-        const content = !(loading || error) ? item : null;
+        const content = !(loading || error) ? items : null;
         return (
             <div className="char__list">
                 {errorMessage}
