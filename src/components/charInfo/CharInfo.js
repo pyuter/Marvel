@@ -1,10 +1,10 @@
 import './charInfo.scss';
-import thor from '../../resources/img/thor.jpeg';
 import { Component } from 'react';
 import MarvelService from '../../services/MarvelService'
 import Spinner from '../spinner/spinner';
 import Skeleton from '../skeleton/Skeleton';
 import ErrorMessage from '../errorMessage/errorMessage';
+import PropTypes from 'prop-types';
 
 class CharInfo extends Component {
 
@@ -18,13 +18,16 @@ class CharInfo extends Component {
 
     componentDidMount() {
         this.updateChar();
+
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (this.props.charId !== prevProps.charId) {
             this.updateChar();
         }
+
     }
+
 
     updateChar = () => {
         const { charId } = this.props;
@@ -115,7 +118,7 @@ const View = ({ char }) => {
                         if (i > 9) return;
                         return (
                             <li key={i} className="char__comics-item">
-                                {item.name}
+                                <a href={item.resourceURI}>{item.name}</a>
                             </li>
                         )
                     })
@@ -125,6 +128,10 @@ const View = ({ char }) => {
             </ul>
         </>
     )
+}
+
+CharInfo.propTypes = {
+    onCharSelected: PropTypes.func.isRequired
 }
 
 export default CharInfo;
