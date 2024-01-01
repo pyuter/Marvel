@@ -1,0 +1,1 @@
+import MainPage from"\\components\\pages/MainPage";import ComicsPage from"\\components\\pages/ComicsPage";export{MainPage,ComicsPage};
