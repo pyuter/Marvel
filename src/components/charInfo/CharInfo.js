@@ -2,22 +2,16 @@ import './charInfo.scss';
 import { useEffect, useState } from 'react';
 import useMarvelService from '../../services/MarvelService'
 import Spinner from '../spinner/spinner';
-import Skeleton from '../skeleton/Skeleton';
 import ErrorMessage from '../errorMessage/errorMessage';
 import PropTypes from 'prop-types';
+import Skeleton from '../skeleton/Skeleton';
+
 
 const CharInfo = (props) => {
 
     const [char, setChar] = useState(null);
 
-
-
-
     const { loading, error, getCharacter, clearError } = useMarvelService();
-
-    useEffect(() => {
-        updateChar();
-    }, [props.charId])
 
 
     const updateChar = () => {
@@ -30,6 +24,11 @@ const CharInfo = (props) => {
             .then(onCharLoaded)
 
     }
+    useEffect(() => {
+        updateChar();
+    }, [props.charId])
+
+
     // save data
     const onCharLoaded = (char) => {
         setChar(char);

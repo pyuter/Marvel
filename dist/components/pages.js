@@ -1,1 +1,1 @@
-import MainPage from"\\components\\pages/MainPage";import ComicsPage from"\\components\\pages/ComicsPage";export{MainPage,ComicsPage};
+import MainPage from"\\components\\pages/MainPage";import ComicsPage from"\\components\\pages/ComicsPage";import Page404 from"\\components\\pages/404";import SingleComicPage from"\\components\\pages/SingleComicPage";export{MainPage,ComicsPage,Page404,SingleComicPage};

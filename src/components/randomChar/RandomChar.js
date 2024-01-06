@@ -10,6 +10,15 @@ const RandomChar = () => {
     const [char, setChar] = useState({});
     const { loading, error, getCharacter, clearError } = useMarvelService();
 
+    const updateChar = () => {
+        clearError();
+        const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
+        // const id = 1011334;
+            getCharacter(id)
+            .then(onCharLoaded)
+    }
+
+
     useEffect(() => {
         updateChar();
         const timerId = setInterval(updateChar, 800000);
@@ -24,13 +33,6 @@ const RandomChar = () => {
         setChar(char)
     }
 
-    const updateChar = () => {
-        clearError();
-        const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-        // const id = 1011334;
-            getCharacter(id)
-            .then(onCharLoaded)
-    }
 
 
     const errorMessage = error ? <ErrorMessage /> : null;
